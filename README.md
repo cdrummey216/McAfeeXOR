@@ -21,6 +21,6 @@ It will result in the original contents of A moved to C, C moved to B, and B mov
 
 Of interest here is that the three results of the third iteration, though deterministic as a whole, are entirely random within each of the three independent data segments. Thus if any one of the three segments is missing or withheld, it is impossible, from the remaining two to extract even the tiniest fragment of the three original contents.
 
-The simplicity of this process is astonishing. A person of average intelligence could decode a message, unsing pencil and paper, providing they possessed all three interim segments. 
+The simplicity of this process is astonishing. A person of average intelligence could decode a message, using pencil and paper, providing they possessed all three interim segments. 
 
 I'm describing this tidbit in the hopes that my observations might be of some use to those engaged in the research of cryptography.
