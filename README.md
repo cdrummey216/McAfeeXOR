@@ -8,18 +8,18 @@ Boolean algebra is one of the foundations of computer science. There is an unusu
 
 If you take any three sets of characters of any equal length - let's label them A,B, and C - and then:
 
-XOR A to B
-Then XOR the result of B to C
-Then similarly XOR C to A
+          XOR A to B
+          Then XOR the result of B to C
+          Then similarly XOR C to A
 
 And then perform four iterations of the above. And finally:
 
-XOR A to B
-And then XOR B to C
+          XOR A to B
+          And then XOR B to C
 
 It will result in the original contents of A moved to C, C moved to B, and B moved to A.
 
-Of interest here is that the three results of the third iteration, though deterministic as a whole, are entinrely random within each of the three independent data segments. Thus if any one of the three segments is missing or withheld, it is impossible, from the remaining two to extract even the tiniest fragment of the three original contents.
+Of interest here is that the three results of the third iteration, though deterministic as a whole, are entirely random within each of the three independent data segments. Thus if any one of the three segments is missing or withheld, it is impossible, from the remaining two to extract even the tiniest fragment of the three original contents.
 
 The simplicity of this process is astonishing. A person of average intelligence could decode a message, unsing pencil and paper, providing they possessed all three interim segments. 
 
