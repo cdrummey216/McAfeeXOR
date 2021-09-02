@@ -36,8 +36,7 @@ public class Program
 		
 		return completed;
 	}
-
-  //
+	
 	private static char[] testxor(char a, char b, char c)
 	{
 		int bxor = a ^ b;
