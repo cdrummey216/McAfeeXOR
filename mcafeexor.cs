@@ -40,7 +40,21 @@ public class Program
 		return sb.ToString();
 	}
 	
-	
+ public static string xoring(string a, string b, int n){
+    string ans = "";
+         
+        // Loop to iterate over the
+        // Binary Strings
+        for (int i = 0; i < n; i++)
+        {
+            // If the Character matches
+            if (a[i] == b[i])
+                ans += "0";
+            else
+                ans += "1";
+        }
+        return ans;
+ }
 	public static Dictionary<string, byte[]> Decode(List<string> input)
 	{
 		string response = "";
