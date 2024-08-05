@@ -1,6 +1,6 @@
 # Foreword
 
-Transribed below is from a tweet from John McAfee desribing a peculiarity in boolean algebra. In mcafeexor.cs, I created a small program to interpret the tweet and, ultimately, I moved the contents of A to C and back using iterations of XOR on binary strings. 
+Transribed below is a tweet from John McAfee desribing a peculiarity in boolean algebra. In mcafeexor.cs, I created a small program to interpret his meaning and, ultimately, I swapped the contents of A & C and back again using iterations of XOR on binary strings. ~deadman
 
 # John McAfee - 05/26/2021 11:06AM
 
