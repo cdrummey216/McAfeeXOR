@@ -1,180 +1,94 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 public class Program
 {
-	public static void Main()
-	{
-		//Console.WriteLine("Input string: " + xor("Truth is immutable."));
-		var list = xor("Truth is immutable.");
-		for (int i = 0; i < list.Count; i++)
-		{
-			//Console.Write("Part " + i + " of " + list.Count + ": " + list[i] + " \n");
-		}
-		
-		var dict = Decode(list);
-		PrintDict(dict);
-	}
-	
-	public static void PrintDict(Dictionary<string, byte[]> dict)
-    {
-        for (int i = 0; i < dict.Count; i++)
-        {
-            KeyValuePair<string, byte[]> entry = dict.ElementAt(i);
-			string bytes = PrintByteArray(entry.Value);
-			Console.WriteLine("KEY " + i + ": " + entry.Key + "/n ");
-			Console.WriteLine("VALUE: " + bytes + "/n ");
-        }
-    }
-	
-	public static string PrintByteArray(byte[] bytes)
-	{
-		var sb = new StringBuilder("new byte[] { ");
-		foreach (var b in bytes)
-		{
-			sb.Append(b + ", ");
-		}
-		sb.Append("}");
-		return sb.ToString();
-	}
-	
- public static string xoring(string a, string b, int n){
-    string ans = "";
-         
-        // Loop to iterate over the
-        // Binary Strings
+	// 2nd and 4th iterations see value swapped between A <--> C
+	// 01110100 01110010 01110101 01110100 01101000 00100000 01101001 
+	// 01110011 00100000 01101001 01101101 01101101 01110101 01110100 
+	// 01100001 01100010 01101100 01100101
+    static string xoring(string a, string b, int n){
+	string ans = "";
+
         for (int i = 0; i < n; i++)
         {
-            // If the Character matches
-            if (a[i] == b[i])
+            if (a[i] == b[i]) {
                 ans += "0";
-            else
+            }
+            else {
                 ans += "1";
+            }
         }
         return ans;
- }
-	public static Dictionary<string, byte[]> Decode(List<string> input)
-	{
-		string response = "";
-		List<string> strings = input;
-		Encoding asciiEncoding = Encoding.ASCII;
-		// Array to hold encoded bytes.
-		Dictionary<string, byte[]> encodedList = new Dictionary<string, byte[]>();
-		byte[] bytes;
-		// Array to hold decoded characters.
-		char[] chars = new char[50];
-		// Create index for current position of character array.
-		int index = 0;
+    }
+     
 
-		foreach (var stringValue in strings)
-		{
-			//Console.WriteLine("String to Encode: {0}", stringValue);
-			// Encode the string to a byte array.
-			bytes = asciiEncoding.GetBytes(stringValue);
-			encodedList.Add(stringValue, bytes);
-			// Display the encoded bytes.
-			//Console.Write("Encoded bytes: ");
-			//for (int ctr = 0; ctr < bytes.Length; ctr++)
-				//Console.Write(" {0}{1:X2}",
-				//			  ctr % 20 == 0 ? Environment.NewLine : "",
-				//			  bytes[ctr]);
-			//Console.WriteLine();
+    static public void Main ()
+    {
+        string a = "10101010";
+        string b = "11011101";
+        string c = "11111111";
+        int n = a.Length;
+        
+    	Console.WriteLine("## Initial Value ##");
+        Console.WriteLine("A = " + a);
+        Console.WriteLine("B = " + b);
+        Console.WriteLine("C = " + c);
+        
+		//Iteration 0
+		Console.WriteLine("## 1st Iteration ##");
+		string x = xoring(a, b, n);
+		Console.WriteLine("A ^ B = " + x);	
+		string y = xoring(x, c, n);
+		Console.WriteLine("X ^ C = " + y);	
+		string z = xoring(y, a, n);
+		Console.WriteLine("Y ^ A = " + z);
 
-			// Decode the bytes to a single character array.
-			int count = asciiEncoding.GetCharCount(bytes);
-			if (count + index >= chars.Length)
-				Array.Resize(ref chars, chars.Length + 50);
+		Console.WriteLine("## Values After 1st Iteration ##");
+		Console.WriteLine("A = " + x);
+		Console.WriteLine("B = " + y);
+		Console.WriteLine("C = " + z);
 
-			int written = asciiEncoding.GetChars(bytes, 0,
-												 bytes.Length,
-												 chars, index);
-			index = index + written;
-		}
+		//Iteration 1
+		Console.WriteLine("## 2nd Iteration (values shifted) ##");
+		string d = xoring(x, y, n);//C moved to A
+		Console.WriteLine("X ^ Y = " + d);	
+		string e = xoring(d, z, n);// B moved to B
+		Console.WriteLine("D ^ Z = " + e);	
+		string f = xoring(e, x, n); //A moved to C
+		Console.WriteLine("E ^ X = " + f);
 
-		// Instantiate a single string containing the characters.
-		response = new string(chars, 0, index - 1);
+		Console.WriteLine("## Values After 2nd Iteration ##");
+		Console.WriteLine("A = " + d);
+		Console.WriteLine("B = " + e);
+		Console.WriteLine("C = " + f);
 
-		return encodedList;
-	}
+		//Iteration 2
+		Console.WriteLine("## 3rd Iteration ##");
+		string u = xoring(d, e, n);
+		Console.WriteLine("D ^ E = " + u);	
+		string v = xoring(u, f, n);
+		Console.WriteLine("U ^ F = " + v);	
+		string w = xoring(v, d, n);
+		Console.WriteLine("V ^ D = " + w);
 
-	public static List<string> xor(string input)
-	{
-		char[] a = input.ToCharArray();
-		int s = a.Length;
-		//Console.WriteLine("KEY A: " + new string(a));
-		char[] b = keygen(s).ToCharArray();
-		//Console.WriteLine("KEY B: " + new string(b));
-		char[] c = keygen(s).ToCharArray();
-		//Console.WriteLine("KEY C: " + new string(c));
+		Console.WriteLine("## Values After 3rd Iteration ##");
+		Console.WriteLine("A = " + u);
+		Console.WriteLine("B = " + v);
+		Console.WriteLine("C = " + w);
+
+		//Iteration 3
+		Console.WriteLine("## 4th Iteration (values returned) ##");
+		string g = xoring(u, v, n); //A returned to A
+		Console.WriteLine("U ^ V = " + g);	
+		string h = xoring(g, w, n);//B returned to B
+		Console.WriteLine("G ^ W = " + h);	
+		string i = xoring(h, u, n);//C returned to C
+		Console.WriteLine("H ^ U = " + i);
+
+		Console.WriteLine("## Values After 4th Iteration ##");
+		Console.WriteLine("A = " + g);
+		Console.WriteLine("B = " + h);
+		Console.WriteLine("C = " + i);
 		
-		char[] data = new char[s];
-		char[] br = new char[s];
-		char[] cr = new char[s];
-		List<string> list = new List<string>();
-		
-		for (int i = 0; i < a.Length; i++)
-		{
-			char[] res = testxor(a[i], b[i], c[i]);
-			data[i] = res[0];
-			br[i] = res[1];
-			cr[i] = res[2];
-		}
-		
-		for (int i = 0; i < a.Length; i++)
-		{
-			char[] res = secondxor(data[i], br[i], cr[i]);
-			br[i] = res[0];
-			cr[i] = res[1];
-		}
-		
-
-		string completed1 = new string(data);
-		string completed2 = new string(br);
-		string completed3 = new string(cr);
-		list.Add(completed1);
-		list.Add(completed2);
-		list.Add(completed3);
-		return list;
-	}
-	
-
-	public static char[] testxor(char a, char b, char c)
-	{
-		int bxor = a ^ b;
-		int cxor = bxor ^ c;
-		int axor = cxor ^ a;
-		for (int i = 0; i > 3; i++)
-		{
-			bxor = axor ^ bxor;
-			cxor = bxor ^ cxor;
-			axor = cxor ^ axor;
-		}
-		//axor = cxor ^ axor;
-		
-		return new char[]{Convert.ToChar(axor), Convert.ToChar(bxor), Convert.ToChar(cxor)};
-	}
-	
-	public static char[] secondxor(char a, char b, char c)
-	{
-		int bxor = a ^ b;
-		int cxor = bxor ^ c;
-		//for (int i = 0; i > 4; i++)
-		//{
-		//	bxor = axor ^ bxor;
-		//	cxor = bxor ^ cxor;
-		//	axor = cxor ^ axor;
-		//}
-		//axor = cxor ^ axor;
-		
-		return new char[]{Convert.ToChar(bxor), Convert.ToChar(cxor)};
-	}
-
-	public static Random random = new Random();
-	public static string keygen(int length)
-	{
-		const string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-		return new string(Enumerable.Repeat(chars, length).Select(s => s[random.Next(s.Length)]).ToArray());
-	}
+    }
 }
