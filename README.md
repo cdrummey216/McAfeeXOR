@@ -2,7 +2,7 @@
 
 Transcribed below is a tweet from John McAfee describing a peculiarity in boolean algebra. In mcafeexor.cs, I created a small program to interpret his meaning and, ultimately, I swapped and returned the contents of A & C using iterations of XOR on binary strings. B is steady. ~deadman
 
-![log](logoutput.png)
+![log](log.png)
 
 # John McAfee - 05/26/2021 11:06AM
 
