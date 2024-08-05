@@ -29,4 +29,4 @@ The simplicity of this process is astonishing. A person of average intelligence 
 
 I'm describing this tidbit in the hopes that my observations might be of some use to those engaged in the research of cryptography.
 
-![Tweet](mcafeexor.jpeg)
+![Tweet](mcafeexor.png)
