@@ -28,3 +28,5 @@ Of interest here is that the three results of the third iteration, though determ
 The simplicity of this process is astonishing. A person of average intelligence could decode a message, using pencil and paper, providing they possessed all three interim segments. 
 
 I'm describing this tidbit in the hopes that my observations might be of some use to those engaged in the research of cryptography.
+
+![DMS](mcafeexor.png)
