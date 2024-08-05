@@ -1,3 +1,7 @@
+# Foreword
+
+Transribed below is from a tweet from John McAfee desribing a peculiarity in boolean algebra. In mcafeexor.cs, I created a small program to interpret the tweet and, ultimately, I moved the contents of A to C and back using iterations of XOR on binary strings. 
+
 # John McAfee - 05/26/2021 11:06AM
 
 In my years as a programmer I observed numerous anomalies that may have practical applications. Since I'm getting no younger I thought I'd begin passing them on. 
