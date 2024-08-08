@@ -19,28 +19,26 @@ public class Program
         return ans;
     }
     
-    public static void XORize(ref string a, ref string b, ref string c, int n){
-		Console.WriteLine("");
-		Console.WriteLine("## Start Iteration ##");
-		string x = xoring(a, b, n);
-		Console.WriteLine("A ^ B = " + x);	
-		string y = xoring(x, c, n);
-		Console.WriteLine("X ^ C = " + y);	
-		string z = xoring(y, a, n);
-		Console.WriteLine("Y ^ A = " + z);
-		Console.WriteLine("## End Iteration ##");
-		Console.WriteLine("");
-		
-		a = x;
-		b = y;
-		c = z;
-	}
+    public static void XORize(ref string a, ref string b, ref string c, int n)
+    {
+
+	string x = xoring(a, b, n);
+	Console.WriteLine("A ^ B (x) = " + x);	
+	string y = xoring(x, c, n);
+	Console.WriteLine("X ^ C (y) = " + y);	
+	string z = xoring(y, a, n);
+	Console.WriteLine("Y ^ A (z) = " + z);
+
+	a = x;
+	b = y;
+	c = z;
+    }
 
     public static void Main()
     {
-        string a = "10101010";
-        string b = "11011101";
-        string c = "11111111";
+        string a = "100010111";
+        string b = "110111011";
+        string c = "111111110";
         int n = a.Length;
         
     	Console.WriteLine("## Initial Value ##");
@@ -48,10 +46,15 @@ public class Program
         Console.WriteLine("B = " + b);
         Console.WriteLine("C = " + c);
         
-	for (int ii = 0; ii < 4; ii++)
+	for (int ii = 0; ii < 6; ii++)
         {
+		Console.WriteLine("");
+		Console.WriteLine("## Start Iteration " + ii +" ##");
 		XORize(ref a, ref b, ref c, n);
+		Console.WriteLine("## End Iteration " + ii +" ##");
+		Console.WriteLine("");
         }
+	    
 	Console.WriteLine("## Final Value ##");	
         Console.WriteLine("A = " + a);
         Console.WriteLine("B = " + b);
