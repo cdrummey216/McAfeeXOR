@@ -46,15 +46,25 @@ public class Program
         Console.WriteLine("B = " + b);
         Console.WriteLine("C = " + c);
         
-	for (int ii = 0; ii < 6; ii++)
+	for (int ii = 1; ii < 6; ii++)
         {
+		if (ii % 2 == 0) { 
+			Console.WriteLine("");
+			Console.WriteLine("## The following is Swap Iteration " + ii + " ##");
+			Console.WriteLine("## Despite the previous iteration's randomized segments," + 
+					  "the original contents of the binary strings (swapped or unswapped A <--> C) " +
+					  "can be resolved based on randomized segments after re-XORizing. Curious. ##");
+		}
 		Console.WriteLine("");
 		Console.WriteLine("## Start Iteration " + ii +" ##");
 		XORize(ref a, ref b, ref c, n);
 		Console.WriteLine("## End Iteration " + ii +" ##");
 		Console.WriteLine("");
+		if (ii % 2 == 0) { 
+			Console.WriteLine("## A <--> C ##");
+		}
         }
-	    
+	
 	Console.WriteLine("## Final Value ##");	
         Console.WriteLine("A = " + a);
         Console.WriteLine("B = " + b);
